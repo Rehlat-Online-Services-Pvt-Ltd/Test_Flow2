@@ -1,9 +1,9 @@
 name: Filter_Flow
 
 on:
-
   schedule:
-    - cron: '* * * * *'
+    - cron: "*/10 * * * *"  # Runs every 10 minutes
+  workflow_dispatch:
 
 jobs:
   runtests:
