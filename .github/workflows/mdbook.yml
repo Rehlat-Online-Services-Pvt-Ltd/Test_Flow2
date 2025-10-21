@@ -68,9 +68,11 @@ jobs:
           done
 
       - name: Re-trigger same workflow
-        if: success()   # only run again if successful
+        if: success()
         run: |
           echo "Re-triggering workflow..."
+          # optional delay before next run
+          sleep 360  # wait 10 minutes before next run (adjust as needed)
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
