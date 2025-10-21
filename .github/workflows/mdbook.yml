@@ -1,8 +1,8 @@
 name: Filter_Flow
+
 on:
   schedule:
-    - cron: '* * * * *'
-    - cron: '*/16 0-23 * * *'
+    - cron: '*/16 * * * *'  # every 16 minutes
   workflow_dispatch:
 
 jobs:
