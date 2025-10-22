@@ -1,16 +1,17 @@
 name: Filter_Flow
 
 on:
-  workflow_dispatch:    # allow manual trigger
-  schedule:             # scheduled runs
-    - cron: '*/10 * * * *'   # every 5 minutes
+  workflow_dispatch:     # manual trigger
+  schedule:              # run every 5 minutes
+    - cron: '*/10 * * * *'
 
 permissions:
   contents: write
 
+# ⚙️ Concurrency control — only 5 workflows can exist at once
 concurrency:
-  group: filter_flow_single_run     # ✅ ensures only one run at a time
-  cancel-in-progress: false         # don't cancel the currently running job
+  group: filter_flow_${{ github.run_number % 5 }}  # 5 unique groups
+  cancel-in-progress: false                        # don't cancel ongoing ones
 
 jobs:
   runtests:
